@@ -1,4 +1,4 @@
-package com.jpmc.theater;
+package com.jpmc.theater.model;
 
 public class Reservation {
     private Customer customer;
@@ -11,7 +11,11 @@ public class Reservation {
         this.audienceCount = audienceCount;
     }
 
+    /**
+     * Return fee for all tickets for this showing after discounts
+     * @return
+     */
     public double totalFee() {
-        return showing.getMovieFee() * audienceCount;
+        return showing.calculateFee(audienceCount);
     }
 }

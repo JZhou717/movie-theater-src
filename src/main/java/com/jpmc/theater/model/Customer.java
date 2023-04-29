@@ -1,4 +1,4 @@
-package com.jpmc.theater;
+package com.jpmc.theater.model;
 
 import java.util.Objects;
 
@@ -13,11 +13,9 @@ public class Customer {
      * @param id customer id
      */
     public Customer(String name, String id) {
-        this.id = id; // NOTE - id is not used anywhere at the moment
-
         this.name = name;
-
-        }
+        this.id = id;
+    }
 
     @Override
     public boolean equals(Object o) {

@@ -1,5 +1,6 @@
-package com.jpmc.theater;
+package com.jpmc.theater.provider;
 
+import com.jpmc.theater.provider.LocalDateProvider;
 import org.junit.jupiter.api.Test;
 
 public class LocalDateProviderTests {

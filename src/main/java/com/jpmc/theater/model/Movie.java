@@ -1,10 +1,10 @@
-package com.jpmc.theater;
+package com.jpmc.theater.model;
 
 import java.time.Duration;
 import java.util.Objects;
 
 public class Movie {
-    private static int MOVIE_CODE_SPECIAL = 1;
+    private static final int MOVIE_CODE_SPECIAL = 1;
 
     private String title;
     private String description;
@@ -12,6 +12,13 @@ public class Movie {
     private double ticketPrice;
     private int specialCode;
 
+    /**
+     * movie constructor without description
+     * @param title
+     * @param runningTime
+     * @param ticketPrice
+     * @param specialCode
+     */
     public Movie(String title, Duration runningTime, double ticketPrice, int specialCode) {
         this.title = title;
         this.runningTime = runningTime;
@@ -19,8 +26,28 @@ public class Movie {
         this.specialCode = specialCode;
     }
 
+    /**
+     * movie constructur with description
+     * @param title
+     * @param description
+     * @param runningTime
+     * @param ticketPrice
+     * @param specialCode
+     */
+    public Movie(String title, String description, Duration runningTime, double ticketPrice, int specialCode) {
+        this.title = title;
+        this.description = description;
+        this.runningTime = runningTime;
+        this.ticketPrice = ticketPrice;
+        this.specialCode = specialCode;
+    }
+
     public String getTitle() {
         return title;
+    }
+
+    public String getDescription() {
+        return description;
     }
 
     public Duration getRunningTime() {
@@ -31,29 +58,29 @@ public class Movie {
         return ticketPrice;
     }
 
-    public double calculateTicketPrice(Showing showing) {
-        return ticketPrice - getDiscount(showing.getSequenceOfTheDay());
+    /**
+     * return movie ticket price without discount
+     * @return
+     */
+    public double calculateTicketPrice() {
+        return ticketPrice;
     }
 
-    private double getDiscount(int showSequence) {
-        double specialDiscount = 0;
-        if (MOVIE_CODE_SPECIAL == specialCode) {
-            specialDiscount = ticketPrice * 0.2;  // 20% discount for special movie
-        }
+    /**
+     * apply discount to movie ticket price
+     * @param discount
+     * @return
+     */
+    public double calculateTicketPrice(double discount) {
+        return ticketPrice - discount;
+    }
 
-        double sequenceDiscount = 0;
-        if (showSequence == 1) {
-            sequenceDiscount = 3; // $3 discount for 1st show
-        } else if (showSequence == 2) {
-
-            sequenceDiscount = 2; // $2 discount for 2nd show
-        }
-//        else {
-//            throw new IllegalArgumentException("failed exception");
-//        }
-
-        // biggest discount wins
-        return specialDiscount > sequenceDiscount ? specialDiscount : sequenceDiscount;
+    /**
+     * Check if this movie is marked special
+     * @return
+     */
+    public boolean isSpecialMovie() {
+        return specialCode == MOVIE_CODE_SPECIAL;
     }
 
     @Override
