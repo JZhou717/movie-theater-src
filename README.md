@@ -1,3 +1,12 @@
+# Modifications Made
+* Classes were split into new packages for models, providers, and utils
+* Functions were moved to their appropriate package classes (e.g., discount calculation was moved to DiscountUtil in util package)
+* Comments added on functions and test cases
+* Implemented new functions to print theater schedule as JSON object
+* Implemented new discount rules
+* Added in test cases
+
+
 # Introduction
 
 This is a poorly written application, and we're expecting the candidate to greatly improve this code base.
