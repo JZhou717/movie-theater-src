@@ -50,7 +50,8 @@ public class ShowingTests {
     void timeDiscount() {
         Movie spiderMan = new Movie("Spider-Man: No Way Home", Duration.ofMinutes(90),12.5, 0);
         Showing showing = new Showing(spiderMan, 5, LocalDateTime.of(LocalDate.now(), LocalTime.of(12, 0)));
-        assertEquals(9.375, showing.calculateFee());
+        // rounding error using power of 10 rounding
+        assertEquals(12.5 - (Math.round(12.5*.25 * 100.0) / 100.0), showing.calculateFee());
     }
 
     /**
