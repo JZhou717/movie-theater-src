@@ -36,9 +36,9 @@ public class DiscountUtil {
             timeDiscount = movie.getTicketPrice() * .25; // 25% discount for movies between 11 and 4
         }
         // biggest discount wins
-
+        double maxDiscount = Math.max(specialDiscount, Math.max(sequenceDiscount, timeDiscount));
         // return discount rounded to hundreds:
-        return Math.max(specialDiscount, Math.max(sequenceDiscount, timeDiscount));
+        return Math.round(maxDiscount * 100.0) / 100.0;
     }
 
     private static boolean between11and4(LocalDateTime startTime) {
